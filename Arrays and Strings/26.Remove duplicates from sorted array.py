@@ -4,13 +4,16 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        count = 0
-
-        for i in range(len(nums)):
-            # Skip if the current element is equal to the next one
-            if i < len(nums) - 2 and nums[i] == nums[i + 1]:
-                continue
-                
-            nums[count] = nums[i]
-            count += 1
+        if len(nums) == 0:
+            return 0
+         
+        count = 1
+        previous = nums[0]
+        index = 1
+        for i in range(1,len(nums)):
+            if nums[i] != previous:
+                count += 1
+                previous = nums[i]
+                nums[index] = nums[i]
+                index+=1
         return count
